@@ -18,7 +18,7 @@
                 $temp = $wp_query;  // re-sets query
                 $wp_query = null;   // re-sets query
                 $args = array(
-                    'post_type' => 'projects',
+                    'post_type' => CPT_PROJECTS,
                     'orderby' => 'Date',
                     'order' => "DESC",
                     'post_status' => 'publish',

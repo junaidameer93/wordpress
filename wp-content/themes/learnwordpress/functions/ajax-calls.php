@@ -11,18 +11,18 @@
         } else {
             $ppp = 6;
         }
-        
+
         $args = array(
-            'post_type'	=> 'projects',
+            'post_type'	=> CPT_PROJECTS,
             'orderby' => 'desc',
             'post_status'	=> 'publish',
             'posts_per_page' =>$ppp,
             'tax_query' => array(
                 'relation' => 'OR',
                 array(
-                    'taxonomy' => 'project-type',
+                    'taxonomy' => PROJECT_TYPE,
                     'field' 	=> 'slug',
-                    'terms' 	=> 'architecture'
+                    'terms' 	=> PROJECT_TYPE_TERM
                 ),
             ),
         );

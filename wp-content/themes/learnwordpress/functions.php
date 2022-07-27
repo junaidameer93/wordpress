@@ -6,6 +6,9 @@
     define('API_DIR', THEME_DIR . '/restapi');
     define('LIBS_DIR', THEME_DIR . '/functions');
     define('TEMP_DIR', THEME_DIR . '/templates');
+    define('CPT_PROJECTS', 'projects');
+    define('PROJECT_TYPE',  'project-type');
+    define('PROJECT_TYPE_TERM',  'architecture');
 
     //Defining api urls
     define('KANYE_REST', 'https://api.kanye.rest/');
