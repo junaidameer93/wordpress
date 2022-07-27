@@ -11,6 +11,7 @@
         } else {
             $ppp = 6;
         }
+        
         $args = array(
             'post_type'	=> 'projects',
             'orderby' => 'desc',

@@ -22,7 +22,7 @@
                     'orderby' => 'Date',
                     'order' => "DESC",
                     'post_status' => 'publish',
-                    'posts_per_page' => '2',
+                    'posts_per_page' => '6',
                     'paged' => $paged,
 
                 );
