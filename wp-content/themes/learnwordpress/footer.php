@@ -1,6 +1,6 @@
 <div id="footer">
     <p>
-        Copyright 2020 <a href="<?php bloginfo('url'); ?>"><?php bloginfo('name'); ?></a>
+        Copyright 2022 <a href="<?php bloginfo('url'); ?>"><?php bloginfo('name'); ?></a>
     </p>
 </div>
 
