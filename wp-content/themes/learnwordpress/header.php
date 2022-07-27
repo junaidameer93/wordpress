@@ -68,11 +68,10 @@
 <div class="header">
     <h1><a href="<?php bloginfo('url'); ?>"><?php strtoupper(bloginfo('name')); ?></a></h1>
     <div class="header-right">
-        <a href="#home">Home</a>
+        <a href="http://127.0.0.1/wordpress/projects/">Home</a>
         <a href="http://127.0.0.1/wordpress/projects/">Archive Page</a>
         <a href="http://127.0.0.1/wordpress/ajax-call/">Ajax Page</a>
         <a href="http://127.0.0.1/wordpress/quotes/">Quotes</a>
-        <a href="http://127.0.0.1/wordpress/quotes/">API Page</a>
     </div>
 </div>
 

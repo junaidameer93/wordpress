@@ -1,74 +1,79 @@
 <?php
-get_header(); ?>
+    get_header(); ?>
 
 <div class="section">
-	<div class="container">
-		<div class="row">
+    <div class="container">
+        <div class="row">
             <?php
-			global $wpdb;
-			$args = array(
-				'post_type' => 'projects',
-				'orderby' => 'Date',
-				'order' => "DESC",
-				'post_status' => 'publish',
-				'posts_per_page' => '6'
+                global $wpdb;
 
-			);
-			// current page
-			$args['paged'] = get_query_var( 'paged' ) ? get_query_var( 'paged' ) : 1;
-			$data = new WP_Query( $args );
-			if ( $data->have_posts() ) : ?>
+                if (get_query_var('paged')) {
+                    $paged = get_query_var('paged');
+                } else if (get_query_var('page')) {
+                    $paged = get_query_var('page');
+                } else {
+                    $paged = 1;
+                }
 
-			<div class="col-md-8">
+                $temp = $wp_query;  // re-sets query
+                $wp_query = null;   // re-sets query
+                $args = array(
+                    'post_type' => 'projects',
+                    'orderby' => 'Date',
+                    'order' => "DESC",
+                    'post_status' => 'publish',
+                    'posts_per_page' => '2',
+                    'paged' => $paged,
 
-				<div class="news-container">
-					<?php
-					// Start the Loop.
-                        while ( $data->have_posts() ) : $data->the_post();
-                        ?>
-						<div class="post" id="post-<?php the_ID(); ?>">
+                );
+                // current page
+                $wp_query = new WP_Query();
+                $wp_query->query($args);
+                $totalPage = $wp_query->max_num_pages;
+                if ($wp_query->have_posts()) : ?>
 
-                            <h2><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
-                            <?php the_title(); ?></a></h2>
-                            <figure class="col-md-12">
-                                <a href="<?=get_permalink()?>"><?php the_post_thumbnail('large',array( 'class' => 'media-object img-responsive' ));?></a>
-                            </figure>
-                            <div class="entry">
+            <div class="col-md-8">
 
-                                <?php the_content(); ?>
+                <div class="news-container">
+                    <?php
+                        // Start the Loop.
+                        while ($wp_query->have_posts()) : $wp_query->the_post();
+                            ?>
+                            <div class="post" id="post-<?php the_ID(); ?>">
 
+                                <h2><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
+                                        <?php the_title(); ?></a></h2>
+                                <figure class="col-md-12">
+                                    <a href="<?= get_permalink() ?>"><?php the_post_thumbnail('large', array('class' => 'media-object img-responsive')); ?></a>
+                                </figure>
+                                <div class="entry">
+
+                                    <?php the_content(); ?>
+
+                                </div>
 
                             </div>
+                        <?php endwhile; ?>
+                    <nav>
+                        <?php paginate();
+                            $wp_query = null;
+                            $wp_query = $temp; // Reset?>
+                    </nav>
 
-                        </div>
-					<?php endwhile;
+                </div>
 
-					wp_reset_postdata();
-					?>
+                <?php
+                    // If no content, include the "No posts found" template.
+                    else :
+                        //get_template_part( 'template-parts/content', 'none' );
+                        echo "<p>No News found.</p>";
 
-
-				</div>
-
-				<?php
-				// Previous/next page navigation.
-				the_posts_pagination( array(
-					'prev_text'          => '<button>privous</button>',
-					'next_text'          => '<button>next</button>',
-					'screen_reader_text' => '&nbsp;',
-					'before_page_number' => '',
-					'mid_size'    => 3,
-				) );
-				// If no content, include the "No posts found" template.
-				else :
-					//get_template_part( 'template-parts/content', 'none' );
-					echo "<p>No News found.</p>";
-
-				endif;
-				wp_reset_postdata();
-				?>
-			</div>
-		</div>
-	</div>
+                    endif;
+                    wp_reset_postdata();
+                ?>
+            </div>
+        </div>
+    </div>
 </div>
 
 

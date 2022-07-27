@@ -3,9 +3,9 @@
     //static variables declaration
     define('THEME_URI', get_template_directory_uri());
     define('THEME_DIR', get_template_directory());
+    define('API_DIR', THEME_DIR . '/restapi');
     define('LIBS_DIR', THEME_DIR . '/functions');
     define('TEMP_DIR', THEME_DIR . '/templates');
-    define('API_DIR', THEME_DIR . '/RestAPI');
 
     //Defining api urls
     define('KANYE_REST', 'https://api.kanye.rest/');
@@ -14,6 +14,7 @@
     // including files
     require_once(API_DIR . '/rest-api.php');
     require_once(LIBS_DIR . '/ajax-calls.php');
+    require_once(LIBS_DIR . '/pagination.php');
 
     // This theme uses post thumbnails
     add_theme_support('post-thumbnails');
