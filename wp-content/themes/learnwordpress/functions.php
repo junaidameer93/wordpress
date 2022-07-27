@@ -22,12 +22,12 @@
     function filter_ip_address()
     {
         $ip_address = $_SERVER['REMOTE_ADDR'];
-            $ip_array = explode(".", $ip_address);
-            if ($ip_array[0] == '77') {
-                if ($ip_array[1] == '29') {
-                    exit;
-                }
+        $ip_array = explode(".", $ip_address);
+        if ($ip_array[0] == '77') {
+            if ($ip_array[1] == '29') {
+                exit;
             }
+        }
     }
 
     add_action('wp_head', 'filter_ip_address');
